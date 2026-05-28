@@ -36,13 +36,18 @@ cask "t4p" do
 
   binary "t4p"
 
-  # Goreleaser binaries are not Apple-notarized, so macOS pins
-  # com.apple.quarantine on them and Gatekeeper blocks exec. Strip it
-  # at install time so the binary is actually runnable.
+  # Goreleaser binaries are not Apple-notarized, so by default macOS
+  # rejects exec on two fronts: the com.apple.quarantine xattr and the
+  # syspolicy check that demands *any* signature. Strip the xattr and
+  # ad-hoc sign the binary in place so Gatekeeper lets it run. Both
+  # steps are no-ops on Linux.
   postflight do
     if OS.mac?
       system_command "/usr/bin/xattr",
                      args: ["-dr", "com.apple.quarantine", "#{staged_path}/t4p"],
+                     must_succeed: false
+      system_command "/usr/bin/codesign",
+                     args: ["--force", "--sign", "-", "#{staged_path}/t4p"],
                      must_succeed: false
     end
   end
