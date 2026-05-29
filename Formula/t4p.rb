@@ -8,8 +8,8 @@
 class T4p < Formula
   desc "Free LLM tokens for the rest of us — a Go wizard that wires Cline/Continue/Aider/LiteLLM to free tiers"
   homepage "https://github.com/AleDeclerk/tokensforthepeople"
-  url "https://github.com/AleDeclerk/tokensforthepeople/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "3d644dff96297c41e927654d9fa4c51aca078eda630bc92ed528f0c9d31429b5"
+  url "https://github.com/AleDeclerk/tokensforthepeople/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "3872a140e103c2c5d27276f7f734a4e9b707e6f08ad26e90ca4d24eac8be104c"
   license "MIT"
   head "https://github.com/AleDeclerk/tokensforthepeople.git", branch: "main"
 
